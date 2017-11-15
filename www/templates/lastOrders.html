@@ -1,0 +1,24 @@
+<ion-view style="" class=" " id="page10" title="Orders">
+    <ion-content class="has-header" padding="true">
+
+
+      <ion-list ng-repeat="item in orders">
+
+        <ion-item class="item-thumbnail-left" >
+
+          <img  ng-src="{{'img/fk/'+ item.product_image +'.jpg'}}" >
+          <h4> {{item.user_name}} - {{item.order_time}} </h4>
+          <h4> {{item.product_name}} </h4>
+          <p>Qty: {{item.item_qty}}  Price: &#8377; {{item.product_price}}</p>
+          <br/>
+          <button ng-click="updateOrder(item)" class="badge badge-assertive" style="position: absolute;right:0;top: 30%" >{{item.status}}</button>
+
+
+
+        </ion-item>
+
+      </ion-list>
+
+
+    </ion-content>
+</ion-view>

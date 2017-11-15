@@ -1,0 +1,28 @@
+<ion-view style="" class=" " id="page8" title="Offers">
+  <ion-content class="has-header" padding="true">
+    <form name="activateOfferForm" class="list " id="activate-offer-form">
+      <ion-list class=" " id="activateOffer-list3">
+
+        <div class="offer-icon"></div>
+
+        <label class="item item-input item-floating-label">
+          <span style="color: black;"  class="input-label">Title</span>
+          <input style="color: black;" type="text" ng-model="offers.title" id = "OfferTitle" placeholder="Enter Title">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span style="color: black;" class="input-label">Description</span>
+          <input style="color: black;" type="text" ng-model="offers.description" id = "Description" placeholder="Enter Description">
+        </label>
+
+        <label class="item item-input item-floating-label">
+          <span style="color: black;" class="input-label">Price (&#8377;)</span>
+          <input style="color: black;" type="number" ng-model="offers.price" id = "Price" placeholder="Price in &#8377;">
+        </label>
+
+      </ion-list>
+      <div style="width: 279px; height: 35px;" class="spacer"></div>
+      <button ng-click="activateOffer(activateOfferForm,offers)" class="button-balanced" style="border-radius:0px 0px 0px 0px; position:relative; text-align:center;left:35%" id="offer-button3">Activate Offer</button>
+      <!--<button class=" button button-positive  button-block icon-left ion-social-facebook " style="border-radius:0px 0px 0px 0px;" id="signup-button4">SIGN UP WITH FACEBOOK</button>-->
+    </form>
+  </ion-content>
+</ion-view>
