@@ -390,9 +390,10 @@ angular.module('app.controllers', [])
 
 
 
-.controller('analyticsCtrl', function($scope,$rootScope) {
-
+.controller('analyticsCtrl', function($scope,$rootScope,sharedUtils,database,$http) {
+  
     $rootScope.extras=true;
+  
 })
 
 .controller('inventoryCtrl', function($scope,$rootScope,fireBaseData,sharedUtils,$state) {
@@ -425,8 +426,7 @@ angular.module('app.controllers', [])
             child.ref.update(updateData);
             $state.reload();
         });
-
-      //$state.reload();
+        $state.reload();
       
    });
   }
@@ -443,7 +443,7 @@ angular.module('app.controllers', [])
         });
         $state.reload();
       });
-      
+      $state.reload();
       
   }
 })
@@ -607,10 +607,49 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('forgotPasswordCtrl', function($scope,$rootScope) {
-    $rootScope.extras=false;
+.controller('qrCodeCtrl', function($scope,$rootScope) {
+  
+      $rootScope.extras=true;
+  
   })
 
+
+.controller('forgotPasswordCtrl', function($scope, $ionicLoading) {
+  $scope.user = {
+    email: ''
+  };
+  $scope.errorMessage = null;
+
+  $scope.resetPassword = function() {
+    $scope.errorMessage = null;
+
+    $ionicLoading.show({
+      template: 'Please wait...'
+    });
+
+    firebase.auth().sendPasswordResetEmail($scope.user.email)
+        .then(showConfirmation)
+        .catch(handleError);
+  };
+
+  function showConfirmation() {
+    $scope.emailSent = true;
+    $ionicLoading.hide();
+  }
+
+  function handleError(error) {
+    switch (error.code) {
+      case 'INVALID_EMAIL':
+      case 'INVALID_USER':
+        $scope.errorMessage = 'Invalid email';
+        break;
+      default:
+        $scope.errorMessage = 'Invalid email';
+    }
+
+    $ionicLoading.hide();
+  }
+})
 
 .controller('checkoutCtrl', function($scope,$rootScope,sharedUtils,$state,$firebaseArray,
                                      $ionicHistory,fireBaseData, $ionicPopup,sharedCartService) {
@@ -809,4 +848,7 @@ angular.module('app.controllers', [])
 
 
   })
+
+  
+    
 

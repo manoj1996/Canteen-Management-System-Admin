@@ -12,6 +12,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services',
     $ionicConfigProvider.scrolling.jsScrolling(false);
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 })
+
 .run(function($ionicPlatform,$rootScope) {
 
     $rootScope.extras = false;
@@ -29,3 +30,5 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services',
     }
   });
 })
+
+
