@@ -73,6 +73,12 @@ angular.module('app.routes', [])
     controller: 'inventoryCtrl'
   })
 
+  .state('updateMenu', {
+    url: '/page22',
+    templateUrl: 'templates/updateMenu.html',
+    controller: 'updateMenuCtrl'
+  })
+
   .state('settings', {
     url: '/page12',
     templateUrl: 'templates/settings.html',

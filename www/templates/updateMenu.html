@@ -1,0 +1,26 @@
+<ion-view style="" class=" " id="page22" title="Update Menu">
+    <ion-content class="has-header" padding="true">
+      
+      <!-- <button ng-click="update()" class=" button button-assertive  button-block" style="border-radius:0px 0px 0px 0px;" id="signup-button3">Refresh</button> -->
+            <ion-list ng-repeat="item in menu">
+      
+              <ion-item class="item-thumbnail-left" >
+      
+                <img  ng-src="{{'img/fk/'+ item.image +'.jpg'}}" >
+                <form ng-controller="updateMenuCtrl"></form>
+                <h2>&ensp;&ensp;&ensp;&ensp; {{item.name}} </h2>
+                
+                <label>Price in &#8377;<input type = "number" ng-model= "updatedPrice" placeholder="{{item.price}}"></input></label>
+                
+                <button ng-click="updatePriceMenu(item.name,updatedPrice)" value="Update">Update</button>
+              </form>
+                <br><br>
+      
+      
+              </ion-item>
+      
+            </ion-list>
+      
+      
+          </ion-content>
+  </ion-view>

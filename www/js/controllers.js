@@ -390,11 +390,14 @@ angular.module('app.controllers', [])
 
 
 
-.controller('analyticsCtrl', function($scope,$rootScope,sharedUtils,database,$http) {
+.controller('analyticsCtrl', function($scope,$rootScope,sharedUtils) {
   
     $rootScope.extras=true;
   
 })
+
+
+
 
 .controller('inventoryCtrl', function($scope,$rootScope,fireBaseData,sharedUtils,$state) {
 
@@ -447,6 +450,51 @@ angular.module('app.controllers', [])
       
   }
 })
+
+
+.controller('updateMenuCtrl', function($scope,$rootScope,fireBaseData,sharedUtils,$state,$window) {
+  
+    $rootScope.extras=true;
+  
+    sharedUtils.showLoading();
+    
+      //Check if user already logged in
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          $scope.user_info = user;
+          fireBaseData.refMenu()
+            .once('value', function (snapshot) {
+              $scope.menu = snapshot.val();
+              $scope.$apply();
+            });
+          sharedUtils.hideLoading();
+        }
+      });
+
+      $scope.updatePriceMenu = function(menu_name,menu_price){
+        
+        let menuRef = firebase.database().ref('menu');
+        var updateData = {
+          price: menu_price
+        }
+          
+        menuRef.orderByChild("name").equalTo(menu_name).once("value", function(snapshot) {
+          snapshot.forEach(function(child) {
+              child.ref.update(updateData);
+               $state.reload();
+          });
+          
+        
+      });
+      $state.reload();
+        };
+      
+        // $scope.updatePriceMenu = function() {
+         
+        //   $window.location.reload();
+        // }
+      
+    })
 
 .controller('settingsCtrl', function($scope,$rootScope,fireBaseData,$firebaseObject,
                                      $ionicPopup,$state,$window,$firebaseArray,
